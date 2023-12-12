@@ -7,6 +7,7 @@ import { MyAccount } from './pages/MyAccount/MyAccount.jsx'
 import { SignIn } from './pages/SignIn/SignIn.jsx'
 import { NotFound } from './pages/NotFound/NotFound.jsx'
 import { Navbar } from './components/Navbar/Navbar.jsx'
+import { Layout } from './components/Layout/Layout.jsx'
 
 import './App.css'
 
@@ -28,7 +29,9 @@ function App() {
     <>
       <BrowserRouter>
         <Navbar />
-        <Routes />
+        <Layout>
+          <Routes />
+        </Layout>
       </BrowserRouter>
     </>
   )
