@@ -1,6 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useContext } from "react";
+import { PlusIcon } from '@heroicons/react/24/solid'
+
 import { ShoppingCardContext } from "../../context";
+
 
 function Card({ data }) {
   const { count, setCount } = useContext(ShoppingCardContext);
@@ -18,7 +21,7 @@ function Card({ data }) {
           className='absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2'
           onClick={() => setCount(count + 1)}
         >
-          +
+          <PlusIcon className="w-4 h-4" />
         </button>
       </figure>
       <p className='flex justify-between'>
