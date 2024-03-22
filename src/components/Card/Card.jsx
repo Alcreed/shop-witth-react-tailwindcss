@@ -9,11 +9,11 @@ function Card({ data }) {
   const { count, setCount } = useContext(ShoppingCardContext);
 
   return (
-    <div className="bg-white cursor-pointer w-56 h-60 rounded-lg">
-      <figure className="relative mb-3 w-full h-4/5">
+    <div className="flex flex-col bg-white cursor-pointer w-56 h-60 rounded-lg overflow-hidden">
+      <figure className="relative w-full h-4/5">
         <span className="absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 p-1">{data?.category}</span>
         <img
-          className="w-full h-full object-cover rounded-lg"
+          className="w-full h-full object-cover"
           src={data.image}
           alt={data.title}
         />
@@ -25,8 +25,8 @@ function Card({ data }) {
           <PlusIcon className="w-4 h-4" />
         </button>
       </figure>
-      <p className="flex justify-between">
-        <span className="text-sm font-light line-clamp-1 text-ellipsis">{data.title}</span>
+      <p className="flex justify-between items-center bg-gray-100 p-1 flex-1">
+        <span className="text-sm font-light line-clamp-1 text-ellipsis whitespace-nowrap overflow-hidden mr-3">{data.title}</span>
         <span className="text-lg font-medium">
           $
           {data.price}
