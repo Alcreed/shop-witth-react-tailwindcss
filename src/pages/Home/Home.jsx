@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-import { Card } from '../../components/Card/Card';
-import { ProductDetail } from '../../components/ProductDetail/ProductDetail';
+import { Card } from "../../components/Card/Card";
+import { ProductDetail } from "../../components/ProductDetail/ProductDetail";
 
 function Home() {
   const [items, setItems] = useState([]);
@@ -9,12 +10,12 @@ function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://fakestoreapi.com/products');
-        const data = await response.json();
-        console.log('🚀 ~ file: Home.jsx:13 ~ fetchData ~ data:', data);
+        // const response = await fetch('https://fakestoreapi.com/products');
+        // const data = await response.json();
+        const { data } = await axios.get("https://fakestoreapi.com/products");
         setItems(data);
       } catch (error) {
-        console.log(`Hubo un error: ${error}`);
+        throw new Error(`Hubo un error: ${error}`);
       }
     };
     fetchData();
@@ -22,15 +23,9 @@ function Home() {
 
   return (
     <div>
-      Home
       <div className="grid gap-4 grid-cols-4 w-full max-w-screen-lg">
         {items.length > 0
-          ? items.map((item) => (
-            <Card
-              key={item.id}
-              data={item}
-            />
-          ))
+          ? items.map((item) => <Card key={item.id} data={item} />)
           : null}
       </div>
 

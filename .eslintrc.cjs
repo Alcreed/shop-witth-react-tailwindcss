@@ -21,6 +21,12 @@ module.exports = {
     ecmaVersion: '2020',
     sourceType: 'module',
   },
+  'import/no-extraneous-dependencies': [
+    'error',
+    {
+      projectDependencies: false,
+    },
+  ],
   rules: {
     // suppress errors for missing 'import React' in files
     'react/react-in-jsx-scope': 'off',
