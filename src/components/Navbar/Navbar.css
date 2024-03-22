@@ -1,0 +1,11 @@
+nav {
+  animation: adjust-nav linear both;
+  animation-timeline: scroll();
+  animation-range: 0 10px;
+}
+
+@keyframes adjust-nav {
+  to {
+    background-color: #e9e9e9;
+  }
+}

@@ -4,16 +4,19 @@ import { ShoppingCartIcon } from '@heroicons/react/24/solid';
 
 import { ShoppingCardContext } from '../../context';
 
+import './Navbar.css';
+
 const menuLinks1 = [
   {
     id: 1, name: 'Shopi', to: '/', className: 'font-semibold text-lg',
   },
   { id: 2, name: 'All', to: '/' },
-  { id: 3, name: 'Clothes', to: '/clothes' },
+  { id: 3, name: 'Men', to: '/men' },
+  { id: 4, name: 'Women', to: '/women' },
   { id: 4, name: 'Electronics', to: '/electronics' },
-  { id: 5, name: 'Furnitures', to: '/furnitures' },
-  { id: 6, name: 'Toys', to: '/toys' },
-  { id: 7, name: 'Other', to: '/other' },
+  { id: 5, name: 'Jewelry', to: '/jewelry' },
+  // { id: 6, name: 'Toys', to: '/toys' },
+  // { id: 7, name: 'Other', to: '/other' },
 ];
 
 const menuLinks2 = [
