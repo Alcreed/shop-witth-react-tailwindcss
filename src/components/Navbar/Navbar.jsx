@@ -13,8 +13,8 @@ const menuLinks1 = [
   { id: 2, name: 'All', to: '/' },
   { id: 3, name: 'Men', to: '/men' },
   { id: 4, name: 'Women', to: '/women' },
-  { id: 4, name: 'Electronics', to: '/electronics' },
-  { id: 5, name: 'Jewelry', to: '/jewelry' },
+  { id: 5, name: 'Electronics', to: '/electronics' },
+  { id: 6, name: 'Jewelry', to: '/jewelry' },
   // { id: 6, name: 'Toys', to: '/toys' },
   // { id: 7, name: 'Other', to: '/other' },
 ];
