@@ -23,7 +23,7 @@ function Home() {
 
   return (
     <div>
-      <div className="grid gap-4 grid-cols-4 w-full max-w-screen-lg">
+      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 w-full max-w-screen-lg">
         {items.length > 0
           ? items.map((item) => <Card key={item.id} data={item} />)
           : null}
