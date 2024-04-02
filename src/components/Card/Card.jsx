@@ -6,19 +6,29 @@ import { PlusIcon } from '@heroicons/react/24/solid';
 import { ShoppingCardContext } from '../../context';
 
 function Card({ data }) {
-  const { count, setCount, openProductDetail, setProductToShow } = useContext(ShoppingCardContext);
+  const { 
+    count,
+    setCount,
+    openSideMenu,
+    setProductToShow,
+    cartProducts,
+    setCartProducts,
+    sideMenuComponent
+  } = useContext(ShoppingCardContext);
 
   const addItemShoppingCart = (e) => {
     e.stopPropagation();
     setCount(count + 1);
+    setCartProducts([...cartProducts, data]);
+    sideMenuComponent('shoppingCart')
+    openSideMenu();
   }
 
   const showProductDetail = () => {
-    console.log('data', data);
-    setProductToShow(data)
-    openProductDetail(true)
+    setProductToShow(data);
+    sideMenuComponent('productDetail')
+    openSideMenu();
   }
-
 
   return (
     <div 
@@ -26,7 +36,7 @@ function Card({ data }) {
       onClick={() => showProductDetail()}
     >
       <figure className="relative w-full h-4/5">
-        <span className="absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 p-1">{data?.category}</span>
+        <span className="absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 p-1 capitalize">{data?.category}</span>
         <img
           className="w-full h-full object-cover"
           src={data.image}

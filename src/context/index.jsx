@@ -3,31 +3,61 @@
 /* eslint-disable react/prop-types */
 import { createContext } from 'react';
 import { useState } from 'react';
+import { ProductDetail } from '../components/ProductDetail/ProductDetail';
+import { ShoppingCart } from '../components/ShoppingCart/ShoppingCart';
 
 export const ShoppingCardContext = createContext();
 
 export function ShoppingCardProvider({ children }) {
+  // Shopping cart
   const [count, setCount] = useState(0);
+  const [cartProducts, setCartProducts] = useState([]);
 
   // Show product
-  const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
-  const openProductDetail = () => setIsProductDetailOpen(true);
-  const closeProductDetail = () => setIsProductDetailOpen(false);
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
+  const openSideMenu = () => {
+
+    setIsSideMenuOpen(true);
+  };
+
+  const closeSideMenu = () => setIsSideMenuOpen(false);
   
   // Product detail
   const [productToShow, setProductToShow] = useState({});
+
+  // SideMenu data
+  const [sideMenuComponentSelected, setSideMenuComponentSelected] = useState();
+  const sideMenuComponent = (component) => {
+    const menuOptions = {
+      'productDetail': {
+        title: "Detail",
+        component: <ProductDetail />
+      },
+      'shoppingCart': {
+        title: "My order",
+        component: <ShoppingCart />
+      }
+    }
+
+    setSideMenuComponentSelected(menuOptions[component]);
+  }
 
   return (
     <ShoppingCardContext.Provider
       value={{
         count,
-        isProductDetailOpen,
+        isSideMenuOpen,
         productToShow,
+        cartProducts,
+        sideMenuComponentSelected,
 
         setCount,
-        openProductDetail,
-        closeProductDetail,
-        setProductToShow
+        openSideMenu,
+        closeSideMenu,
+        setProductToShow,
+        setCartProducts,
+        sideMenuComponent,
+        setSideMenuComponentSelected
       }}
     >
       {children}

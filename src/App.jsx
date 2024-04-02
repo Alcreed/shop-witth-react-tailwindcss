@@ -9,6 +9,7 @@ import { SignIn } from './pages/SignIn/SignIn';
 import { NotFound } from './pages/NotFound/NotFound';
 import { Navbar } from './components/Navbar/Navbar';
 import { Layout } from './components/Layout/Layout';
+import { SideMenu } from './components/SideMenu/SideMenu';
 
 import './App.css';
 
@@ -33,6 +34,7 @@ function App() {
         <Layout>
           <Routes />
         </Layout>
+        <SideMenu />
       </BrowserRouter>
     </ShoppingCardProvider>
   );

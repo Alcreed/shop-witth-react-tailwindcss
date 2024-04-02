@@ -3,6 +3,7 @@ import axios from "axios";
 
 import { Card } from "../../components/Card/Card";
 import { ProductDetail } from "../../components/ProductDetail/ProductDetail";
+import { SideMenu } from "../../components/SideMenu/SideMenu";
 
 function Home() {
   const [items, setItems] = useState([]);
@@ -28,8 +29,6 @@ function Home() {
           ? items.map((item) => <Card key={item.id} data={item} />)
           : null}
       </div>
-
-      <ProductDetail />
     </div>
   );
 }
