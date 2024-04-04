@@ -5,9 +5,8 @@ import { ShoppingCardContext } from "../../context";
 
 import './SideMenu.css';
 
-function SideMenu({ children, sideMenuTitle }) {
+function SideMenu() {
   const { isSideMenuOpen, closeSideMenu, sideMenuComponentSelected } = useContext(ShoppingCardContext);
-  console.log("🚀 ~ SideMenu ~ sideMenuComponentSelected:", sideMenuComponentSelected)
 
   return (
     <aside className={`${isSideMenuOpen ? 'flex' : 'hidden'} product-detail flex-col gap-3 fixed right-0 border border-black rounded-lg bg-white p-6`}>

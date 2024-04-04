@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable react/prop-types */
 import { useContext } from 'react';
-import { PlusIcon } from '@heroicons/react/24/solid';
+import { PlusIcon, CheckIcon } from '@heroicons/react/24/solid';
 
 import { ShoppingCardContext } from '../../context';
 
@@ -13,7 +13,8 @@ function Card({ data }) {
     setProductToShow,
     cartProducts,
     setCartProducts,
-    sideMenuComponent
+    sideMenuComponent,
+    removeProduct
   } = useContext(ShoppingCardContext);
 
   const addItemShoppingCart = (e) => {
@@ -30,6 +31,20 @@ function Card({ data }) {
     openSideMenu();
   }
 
+  const renderIcon = () => {
+    const isInCart = cartProducts.find(product => product.id === data.id);
+    
+    return (
+      <button
+        type="button"
+        className={`absolute top-0 right-0 flex justify-center items-center w-6 h-6 rounded-full m-2 ${isInCart ? 'bg-green-400' : 'bg-white'}`}
+        onClick={(e) => isInCart ? removeProduct(e, data) : addItemShoppingCart(e)}
+      >
+        {isInCart ? <CheckIcon className="w-4 h-4 text-white" /> : <PlusIcon className="w-4 h-4" />}
+      </button>
+    )
+  }
+
   return (
     <div 
       className="flex flex-col bg-white cursor-pointer w-56 h-60 rounded-lg overflow-hidden"
@@ -42,13 +57,7 @@ function Card({ data }) {
           src={data.image}
           alt={data.title}
         />
-        <button
-          type="button"
-          className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2"
-          onClick={addItemShoppingCart}
-        >
-          <PlusIcon className="w-4 h-4" />
-        </button>
+        {renderIcon()}
       </figure>
       <p className="flex justify-between items-center bg-gray-100 p-1 flex-1">
         <span className="text-sm font-light line-clamp-1 text-ellipsis whitespace-nowrap overflow-hidden mr-3">{data.title}</span>

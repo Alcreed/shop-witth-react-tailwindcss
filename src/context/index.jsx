@@ -42,6 +42,12 @@ export function ShoppingCardProvider({ children }) {
     setSideMenuComponentSelected(menuOptions[component]);
   }
 
+  const removeProduct = (e, productData) => {
+    e.stopPropagation();
+    const productCart = cartProducts.filter(product => product.id !== productData.id);
+    setCartProducts(productCart);
+  }
+
   return (
     <ShoppingCardContext.Provider
       value={{
@@ -57,7 +63,8 @@ export function ShoppingCardProvider({ children }) {
         setProductToShow,
         setCartProducts,
         sideMenuComponent,
-        setSideMenuComponentSelected
+        setSideMenuComponentSelected,
+        removeProduct
       }}
     >
       {children}

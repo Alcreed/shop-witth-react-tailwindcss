@@ -26,7 +26,7 @@ const menuLinks2 = [
 ];
 
 function Navbar() {
-  const { count } = useContext(ShoppingCardContext);
+  const { cartProducts } = useContext(ShoppingCardContext);
   const activeStyle = 'underline underline-offset-4';
 
   return (
@@ -63,7 +63,7 @@ function Navbar() {
         <li className="flex gap-3 items-center">
           <ShoppingCartIcon className="w-6 h-6" />
           {' '}
-          {count}
+          {cartProducts.length}
         </li>
       </ul>
     </nav>
