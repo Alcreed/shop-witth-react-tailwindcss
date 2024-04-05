@@ -21,8 +21,6 @@ function Card({ data }) {
     e.stopPropagation();
     setCount(count + 1);
     setCartProducts([...cartProducts, data]);
-    sideMenuComponent('shoppingCart')
-    openSideMenu();
   }
 
   const showProductDetail = () => {

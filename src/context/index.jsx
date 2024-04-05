@@ -15,11 +15,7 @@ export function ShoppingCardProvider({ children }) {
 
   // Show product
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
-  const openSideMenu = () => {
-
-    setIsSideMenuOpen(true);
-  };
-
+  const openSideMenu = () => setIsSideMenuOpen(true);
   const closeSideMenu = () => setIsSideMenuOpen(false);
   
   // Product detail

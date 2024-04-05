@@ -26,8 +26,13 @@ const menuLinks2 = [
 ];
 
 function Navbar() {
-  const { cartProducts } = useContext(ShoppingCardContext);
+  const { cartProducts, sideMenuComponent, openSideMenu } = useContext(ShoppingCardContext);
   const activeStyle = 'underline underline-offset-4';
+
+  const openShoppingCart = () => {
+    sideMenuComponent('shoppingCart');
+    openSideMenu();
+  }
 
   return (
     <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light">
@@ -60,7 +65,10 @@ function Navbar() {
             </NavLink>
           </li>
         ))}
-        <li className="flex gap-3 items-center">
+        <li 
+          className="flex gap-3 items-center cursor-pointer"
+          onClick={() => openShoppingCart()}
+        >
           <ShoppingCartIcon className="w-6 h-6" />
           {' '}
           {cartProducts.length}
