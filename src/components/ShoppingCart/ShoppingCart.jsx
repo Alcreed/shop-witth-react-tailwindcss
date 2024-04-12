@@ -1,4 +1,5 @@
 import { useContext } from "react"
+import { Link } from "react-router-dom";
 import { ShoppingCardContext } from "../../context"
 import { totalPrice } from "../utils";
 
@@ -7,7 +8,7 @@ import { OrderCard } from "../OrderCard/OrderCard";
 import "./ShoppingCart.css"
 
 function ShoppingCart() {
-  const { cartProducts, setCartProducts, order, setOrder } = useContext(ShoppingCardContext);
+  const { cartProducts, setCartProducts, order, setOrder, closeSideMenu } = useContext(ShoppingCardContext);
 
   const handleCheckout = () => {
     const orderToAdd = {
@@ -19,6 +20,7 @@ function ShoppingCart() {
 
     setOrder([...order, orderToAdd]);
     setCartProducts([]);
+    closeSideMenu();
   }
 
   return (
@@ -39,12 +41,14 @@ function ShoppingCart() {
             ${totalPrice(cartProducts)}
           </span>
         </p>
-        <button 
-          className={`w-full py-3 rounded-lg text-white ${cartProducts.length > 0 ? "bg-emerald-400" : "bg-slate-200 cursor-not-allowed"}`}
-          onClick={() => handleCheckout()}
-        >
-          Checkout
-        </button>
+        <Link to='/my-orders/last'>
+          <button 
+            className={`w-full py-3 rounded-lg text-white ${cartProducts.length > 0 ? "bg-emerald-400" : "bg-slate-200 cursor-not-allowed"}`}
+            onClick={() => handleCheckout()}
+          >
+            Checkout
+          </button>
+        </Link>
       </div>
     </div>
   )
