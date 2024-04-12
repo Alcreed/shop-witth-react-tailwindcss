@@ -12,6 +12,7 @@ export function ShoppingCardProvider({ children }) {
   // Shopping cart
   const [count, setCount] = useState(0);
   const [cartProducts, setCartProducts] = useState([]);
+  const [order, setOrder] = useState([]);
 
   // Show product
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
@@ -52,6 +53,7 @@ export function ShoppingCardProvider({ children }) {
         productToShow,
         cartProducts,
         sideMenuComponentSelected,
+        order,
 
         setCount,
         openSideMenu,
@@ -60,7 +62,8 @@ export function ShoppingCardProvider({ children }) {
         setCartProducts,
         sideMenuComponent,
         setSideMenuComponentSelected,
-        removeProduct
+        removeProduct,
+        setOrder
       }}
     >
       {children}

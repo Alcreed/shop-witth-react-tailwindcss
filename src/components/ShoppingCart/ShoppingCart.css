@@ -1,7 +1,3 @@
 .myOrder_container {
   height: 93%;
 }
-
-.myOrder_list {
-  height: calc(100% - 35px);
-}

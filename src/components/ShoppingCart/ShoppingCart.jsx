@@ -7,11 +7,23 @@ import { OrderCard } from "../OrderCard/OrderCard";
 import "./ShoppingCart.css"
 
 function ShoppingCart() {
-  const { cartProducts } = useContext(ShoppingCardContext);
+  const { cartProducts, setCartProducts, order, setOrder } = useContext(ShoppingCardContext);
+
+  const handleCheckout = () => {
+    const orderToAdd = {
+      date: '',
+      products: cartProducts,
+      totalProducts: cartProducts.length,
+      totalPrice: totalPrice(cartProducts)
+    }
+
+    setOrder([...order, orderToAdd]);
+    setCartProducts([]);
+  }
 
   return (
     <div className="myOrder_container flex flex-col gap-4">
-      <div className="myOrder_list flex flex-col gap-2 overflow-auto">
+      <div className="flex-1 flex flex-col gap-2 overflow-auto">
         {cartProducts.length > 0 ?
           cartProducts.map(card => {
             return (
@@ -27,6 +39,12 @@ function ShoppingCart() {
             ${totalPrice(cartProducts)}
           </span>
         </p>
+        <button 
+          className={`w-full py-3 rounded-lg text-white ${cartProducts.length > 0 ? "bg-emerald-400" : "bg-slate-200 cursor-not-allowed"}`}
+          onClick={() => handleCheckout()}
+        >
+          Checkout
+        </button>
       </div>
     </div>
   )
