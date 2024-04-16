@@ -19,6 +19,7 @@ const Routes = () => {
     { path: '/my-orders', element: <MyOrders /> },
     { path: '/my-orders/last', element: <MyOrder /> },
     { path: '/my-order', element: <MyOrder /> },
+    { path: '/my-order/:id', element: <MyOrder /> },
     { path: '/my-account', element: <MyAccount /> },
     { path: '/sign-in', element: <SignIn /> },
     { path: '*', element: <NotFound /> },

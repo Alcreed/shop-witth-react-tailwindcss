@@ -12,7 +12,8 @@ function ShoppingCart() {
 
   const handleCheckout = () => {
     const orderToAdd = {
-      date: '',
+      id: crypto.randomUUID(),
+      date: '06/04/24',
       products: cartProducts,
       totalProducts: cartProducts.length,
       totalPrice: totalPrice(cartProducts)
