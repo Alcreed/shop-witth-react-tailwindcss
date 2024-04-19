@@ -5,7 +5,6 @@ import { ShoppingCardContext } from "../../context";
 
 function MyOrders() {
   const { order } = useContext(ShoppingCardContext);
-  console.log("🚀 ~ MyOrders ~ order:", order)
 
   return (
     <div>

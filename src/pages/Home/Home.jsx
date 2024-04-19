@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import { useParams } from "react-router-dom";
 
 import { Card } from "../../components/Card/Card";
 import { ShoppingCardContext } from "../../context";
@@ -6,12 +7,14 @@ import { ShoppingCardContext } from "../../context";
 function Home() {
 
   const { items } = useContext(ShoppingCardContext);
+  const { category } = useParams();
   const [searchByTitle, setSearchByTitle] = useState("");
 
   const filteredItems = (item) => {
     let title = item.title.toLowerCase();
+    let itemValidateCategory = category ? item.category === category : true;
 
-    if (title.includes(searchByTitle.toLowerCase())) return true
+    if (title.includes(searchByTitle.toLowerCase()) && itemValidateCategory) return true
   }
 
   return (

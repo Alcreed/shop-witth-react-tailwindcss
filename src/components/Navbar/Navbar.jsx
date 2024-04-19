@@ -11,12 +11,10 @@ const menuLinks1 = [
     id: 1, name: 'Shopi', to: '/', className: 'font-semibold text-lg',
   },
   { id: 2, name: 'All', to: '/' },
-  { id: 3, name: 'Men', to: '/men' },
-  { id: 4, name: 'Women', to: '/women' },
+  { id: 3, name: 'Men', to: "/men's clothing" },
+  { id: 4, name: 'Women', to: "/women's clothing" },
   { id: 5, name: 'Electronics', to: '/electronics' },
-  { id: 6, name: 'Jewelry', to: '/jewelry' },
-  // { id: 6, name: 'Toys', to: '/toys' },
-  // { id: 7, name: 'Other', to: '/other' },
+  { id: 6, name: 'Jewelry', to: '/jewelery' },
 ];
 
 const menuLinks2 = [
