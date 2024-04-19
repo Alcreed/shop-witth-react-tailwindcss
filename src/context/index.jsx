@@ -1,8 +1,9 @@
 /* eslint-disable import/no-duplicates */
 /* eslint-disable react/jsx-no-constructed-context-values */
 /* eslint-disable react/prop-types */
-import { createContext } from 'react';
-import { useState } from 'react';
+import { useState, useEffect, createContext } from 'react';
+import axios from 'axios';
+
 import { ProductDetail } from '../components/ProductDetail/ProductDetail';
 import { ShoppingCart } from '../components/ShoppingCart/ShoppingCart';
 
@@ -13,6 +14,9 @@ export function ShoppingCardProvider({ children }) {
   const [count, setCount] = useState(0);
   const [cartProducts, setCartProducts] = useState([]);
   const [order, setOrder] = useState([]);
+
+  // Get products
+  const [items, setItems] = useState([]);
 
   // Show product
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
@@ -45,6 +49,20 @@ export function ShoppingCardProvider({ children }) {
     setCartProducts(productCart);
   }
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // const response = await fetch('https://fakestoreapi.com/products');
+        // const data = await response.json();
+        const { data } = await axios.get("https://fakestoreapi.com/products");
+        setItems(data);
+      } catch (error) {
+        throw new Error(`Hubo un error: ${error}`);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <ShoppingCardContext.Provider
       value={{
@@ -54,6 +72,7 @@ export function ShoppingCardProvider({ children }) {
         cartProducts,
         sideMenuComponentSelected,
         order,
+        items,
 
         setCount,
         openSideMenu,
@@ -63,7 +82,8 @@ export function ShoppingCardProvider({ children }) {
         sideMenuComponent,
         setSideMenuComponentSelected,
         removeProduct,
-        setOrder
+        setOrder,
+        setItems
       }}
     >
       {children}

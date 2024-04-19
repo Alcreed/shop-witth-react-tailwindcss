@@ -1,33 +1,34 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useContext } from "react";
 
 import { Card } from "../../components/Card/Card";
-import { ProductDetail } from "../../components/ProductDetail/ProductDetail";
-import { SideMenu } from "../../components/SideMenu/SideMenu";
+import { ShoppingCardContext } from "../../context";
 
 function Home() {
-  const [items, setItems] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // const response = await fetch('https://fakestoreapi.com/products');
-        // const data = await response.json();
-        const { data } = await axios.get("https://fakestoreapi.com/products");
-        setItems(data);
-      } catch (error) {
-        throw new Error(`Hubo un error: ${error}`);
-      }
-    };
-    fetchData();
-  }, []);
+  const { items } = useContext(ShoppingCardContext);
+  const [searchByTitle, setSearchByTitle] = useState("");
+
+  const filteredItems = (item) => {
+    let title = item.title.toLowerCase();
+
+    if (title.includes(searchByTitle.toLowerCase())) return true
+  }
 
   return (
-    <div>
-      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 w-full max-w-screen-lg">
-        {items.length > 0
-          ? items.map((item) => <Card key={item.id} data={item} />)
-          : null}
+    <div className="flex flex-col items-center justify-center gap-3">
+      <input
+        className="w-96 outline-none border border-black rounded-lg p-2"
+        type="text" 
+        placeholder="Search product"
+        onChange={(e) => setSearchByTitle(e.target.value)}
+      />
+
+      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 w-full max-w-screen-lg place-content-center">
+        {items.length > 0 ?
+          items.filter((item) => filteredItems(item)).length > 0 ?
+            items.filter((item) => filteredItems(item)).map((item) => <Card key={item.id} data={item} />)
+          : <p>We don't have coincidences</p>
+        : null}
       </div>
     </div>
   );
